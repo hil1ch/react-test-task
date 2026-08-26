@@ -47,7 +47,10 @@ export const ProductDetailsPage = () => {
                 </div>
               </span>
             </div>
-            <ButtonTemplate children="Добавить в корзину" type="primary" />
+            <div className="flex gap-2">
+              <ButtonTemplate children="Добавить в корзину" type="primary" />
+              <ButtonTemplate children="Перейти в корзину" />
+            </div>
           </div>
         </div>
       </div>

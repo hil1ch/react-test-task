@@ -6,13 +6,13 @@ export const CheckboxTemplate = ({
   onChange,
   label,
   children,
-  ...restProps
+  ...rest
 }) => {
   return (
     <Checkbox
       checked={checked}
       onChange={onChange}
-      {...restProps}
+      {...rest}
       className={className}
     >
       {label || children}
