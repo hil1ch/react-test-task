@@ -27,7 +27,7 @@ export const FiltersMenu = () => {
   return (
     <Menu
       onClick={onClick}
-      style={{ width: 256, position: "absolute" }}
+      style={{ width: 256, maxHeight: 0, fontSize: 16 }}
       defaultSelectedKeys={["1"]}
       defaultOpenKeys={["sub1"]}
       mode="inline"

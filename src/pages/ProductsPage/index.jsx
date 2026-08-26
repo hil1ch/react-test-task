@@ -3,12 +3,13 @@ import { Search } from "../../components/Search";
 import { FiltersMenu } from "./FiltersMenu";
 import { ProductsList } from "./ProductsList";
 import Sorting from "./Sorting";
+import { Spin } from "antd";
 
 import { getProducts } from "../../services/api";
 
 export const ProductsPage = () => {
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,14 +31,18 @@ export const ProductsPage = () => {
         <Search />
         <Sorting />
       </div>
-      <div className="flex">
+      <div className="flex gap-10">
         <FiltersMenu />
 
-        {isLoading ? (
-          <div>Загрузка товаров...</div>
-        ) : (
-          <ProductsList products={products} />
-        )}
+        <div className="flex-1">
+          {isLoading ? (
+            <div className="flex h-full w-full items-center justify-center">
+              <Spin size="large" />
+            </div>
+          ) : (
+            <ProductsList products={products} />
+          )}
+        </div>
       </div>
     </div>
   );

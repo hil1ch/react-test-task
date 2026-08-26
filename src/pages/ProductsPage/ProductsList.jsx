@@ -6,6 +6,7 @@ export const ProductsList = ({ products }) => {
       {products?.map((product) => (
         <ProductItem
           key={product.id}
+          id={product.id}
           name={product.name}
           image={product.colors[0].images[0]}
           price={product.colors.map((el) => el.price)}
