@@ -1,17 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { CartProductItem } from "./CartProductItem";
 import { CheckboxTemplate } from "../../components/CheckboxTemplate";
 import { ButtonTemplate } from "../../components/ButtonTemplate";
-// import { Icons } from "@/assets/icons/Icons";
-// import { deleteMultipleFromCart } from "@/store/slices/cartSlice.ts";
+import { deleteMultipleFromCart } from "../../store/slices/cartSlice";
 import classNames from "classnames";
 
 export const CartProductsList = ({ items }) => {
- 
   const [selectedItems, setSelectedItems] = useState([]);
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const keysItemsInCart = useMemo(() => items.map((item) => item.id), [items]);
 
@@ -42,12 +40,12 @@ export const CartProductsList = ({ items }) => {
 
         <ButtonTemplate
           disabled={isNothingSelected}
-        //   onClick={() => dispatch(deleteMultipleFromCart(selectedItems))}
+          onClick={() => dispatch(deleteMultipleFromCart(selectedItems))}
           className={classNames({
             "hover:!text-red-500": !isNothingSelected,
           })}
           type="text"
-        //   iconEnd={<Icons.BasketClean />}
+          //   iconEnd={<Icons.BasketClean />}
           // name="Удалить выбранное"
           children="Удалить выбранное"
         />
@@ -62,34 +60,6 @@ export const CartProductsList = ({ items }) => {
           />
         ))}
       </ul>
-
-      {/* <CustomModal
-        title="Вы уверены?"
-        description={
-          <span className="text-center block">
-            Это действие не может быть отменено. Вы действительно хотите удалить
-            все выбранные артикула:
-            <ul>
-              {selectedItems.map((item) => (
-                <li className="font-bold" key={item}>
-                  - {item}
-                </li>
-              ))}
-            </ul>
-          </span>
-        }
-        setIsModalOpen={setIsModalOpen}
-        isModalOpen={isOpenModal}
-        footer={
-          <ActionsModal
-            handleApprove={() => {
-              dispatch(deleteMultipleFromCart(selectedItems));
-              setIsModalOpen(false);
-            }}
-            handleCancel={() => setIsModalOpen(false)}
-          />
-        }
-      /> */}
     </div>
   );
 };

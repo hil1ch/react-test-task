@@ -7,7 +7,6 @@ import { addToCart } from "../../store/slices/cartSlice";
 import { APP_PATHS } from "../../constants/paths";
 import { getProduct, getCategory } from "../../services/api";
 import { getColorsByHex } from "../../utils/getColorsByHex";
-import Spin from "antd";
 
 export const ProductDetailsPage = () => {
   const [product, setProduct] = useState([]);
@@ -19,11 +18,6 @@ export const ProductDetailsPage = () => {
 
   const dispatch = useDispatch();
   const [isInCart, setIsInCart] = useState(false);
-
-  const handleAddToCart = () => {
-    dispatch(addToCart({ productId, quantity: 1 }));
-    setIsInCart(true);
-  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -53,6 +47,11 @@ export const ProductDetailsPage = () => {
     fetchCategory();
   }, [product.categoryId]);
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    setIsInCart(true);
+  };
+
   const colors = useMemo(
     () => product.colors?.map((color) => color.name),
     [product.colors],
@@ -68,6 +67,10 @@ export const ProductDetailsPage = () => {
     });
     return [...new Set(allSizes)];
   }, [product.colors]);
+
+  const allAvailableSizes = useMemo(() => {
+    return sizes.filter((size) => sizes.includes(size.id));
+  }, [sizes]);
 
   return (
     <div className="w-full">

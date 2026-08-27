@@ -2,18 +2,20 @@ import { APP_PATHS } from "../../constants/paths";
 
 import { ButtonTemplate } from "../../components/ButtonTemplate";
 import { Input } from "antd";
-// import { CheckboxTemplate } from "../../components/CheckboxTemplate";
+import { useNavigate } from "react-router-dom";
 
 const CartSummary = ({
   totalPrice,
   variant = "carts",
   cartProducts,
-  cartItems,
-  activeTab,
-  isConsent,
-  loading,
-  // setIsConsent,
+  // cartItems,
+  // activeTab,
+  // isConsent,
+  // loading,
+  // // setIsConsent,
 }) => {
+  const navigate = useNavigate();
+
   const isOrderVariant = variant === "order";
 
   return (
@@ -48,39 +50,15 @@ const CartSummary = ({
             }
           />
           <ButtonTemplate
-            // block
-            // isLink
-            // href={APP_PATHS.route.catalog}
-            // typeCustom="black"
-            // name="Перейти к покупкам"
+            onClick={() => navigate(`${APP_PATHS.route.home}`)}
             children="Перейти к покупкам"
           />
-
-          {/* {isOrderVariant && (
-            <CheckboxTemplate
-              checked={isConsent}
-              onChange={() => setIsConsent?.(!isConsent)}
-            >
-              Согласие на обработку персональных данных
-            </CheckboxTemplate>
-          )} */}
         </div>
         <p className="text-left text-gray-400 mb-2 text-sm">Есть промокод?</p>
         <div className="flex flex-col gap-2">
           <Input placeholder="Введите промокод" />
           <ButtonTemplate children="Применить" type="primary" disabled />
         </div>
-        {/* <div className="mt-5">
-          <h3>{isOrderVariant ? "Состав заказа:" : "Способы получения:"}</h3>
-          {!isOrderVariant ? (
-            <DeliveryMethods />
-          ) : (
-            <OrderListProducts
-              cartProducts={cartProducts}
-              cartItems={cartItems}
-            />
-          )}
-        </div> */}
       </div>
     </div>
   );

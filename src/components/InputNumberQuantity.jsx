@@ -1,5 +1,6 @@
 import { ButtonTemplate } from "./ButtonTemplate";
 import { InputNumberQuantityTemplate } from "./InputNumberQuantityTemplate";
+import classNames from "classnames";
 
 const sharedProps = {
   min: 1,
@@ -38,7 +39,7 @@ export const InputNumberQuantity = ({
   };
 
   return (
-    <div className={(wrapperClass, className)}>
+    <div className={classNames(wrapperClass, className)}>
       <ButtonTemplate
         className={buttonClass}
         size="small"
