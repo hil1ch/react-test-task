@@ -28,6 +28,7 @@ export const ProductItem = ({ id, name, brand, image, price }) => {
         title={name}
         description={
           <ProductDescription
+            id={id}
             brand={brand}
             navigateToCart={navigateToCart}
             price={price}
