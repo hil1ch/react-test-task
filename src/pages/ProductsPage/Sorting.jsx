@@ -1,5 +1,4 @@
 import { SelectTemplate } from "../../components/SelectTemplate";
-// import { SortPriceValue } from "@/utils/getSortingProducts.ts";
 
 const options = [
   {
@@ -16,8 +15,8 @@ const Sorting = ({ setSorting, sorting }) => {
   return (
     <>
       <SelectTemplate
-        // onChange={(value: SortPriceValue) => setSorting({ price: value })}
-        // value={sorting.price}
+        onChange={(value) => setSorting({ price: value })}
+        value={sorting.price}
         placeholder="Сортировка"
         options={options}
         size="medium"
